@@ -29,7 +29,9 @@ submodule update --remote --init --recursive --merge
 ## TODO list
 
 - [X] Automatically Install missing submodules
-- [X] Be able to install dependencies, build and start an app
+- [ ] Be able to install dependencies, build and start an app
+  - [X] For normal python apps(and that start with main.py)
+  - [ ] For Django apps
 - [ ] Discover repositories locally on the user computer
 - [ ] Be able to clone/pull user repositories
 

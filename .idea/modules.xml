@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../dev-tools-database/.idea/dev-tools-database.iml" filepath="$PROJECT_DIR$/../dev-tools-database/.idea/dev-tools-database.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../dev-tools-server/.idea/dev-tools-server.iml" filepath="$PROJECT_DIR$/../dev-tools-server/.idea/dev-tools-server.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/python-app-manager.iml" filepath="$PROJECT_DIR$/.idea/python-app-manager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../repository-mirror/.idea/repository-mirror.iml" filepath="$PROJECT_DIR$/../repository-mirror/.idea/repository-mirror.iml" />
     </modules>
   </component>
 </project>
