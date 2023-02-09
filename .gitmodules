@@ -1,3 +1,6 @@
 [submodule "process_utils_dev"]
 	path = python_app_manager/submodules/process_utils_dev
 	url = git@github.com:Perseverancia-company/sub.process-utils.git
+[submodule "python_app_manager/submodules/py_gitconfig"]
+	path = python_app_manager/submodules/py_gitconfig
+	url = git@github.com:Longbranch-Vinaigrette/py_gitconfig.git
