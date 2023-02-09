@@ -3,6 +3,10 @@
 Python app manager is to start and stop python apps and install dependencies \
 when required.
 
+This project will grow as long as I need it to grow in the aspects I need,
+what I mean is that I will not code extra functionality that I won't ever
+use.
+
 ## Packages required
 
 This module uses these packages:
