@@ -6,7 +6,9 @@ when required.
 ## Packages required
 
 This module uses these packages:
+* [Pipenv](https://github.com/pypa/pipenv)
 * [Toml 0.10.2](https://pypi.org/project/toml/)
+* psutil
 
 ## Submodules
 
