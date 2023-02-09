@@ -20,7 +20,7 @@ def install_submodules():
             print("There's a submodule missing, installing it...")
             subprocess.run(["/bin/bash",
                             "-c",
-                            "submodule update --remote --init --recursive --merge"])
+                            "git submodule update --remote --init --recursive --merge"])
             return
 
 

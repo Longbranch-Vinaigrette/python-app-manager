@@ -23,7 +23,7 @@ The program automatically installs/updates the submodules using the following co
 
 
 ```bash
-submodule update --remote --init --recursive --merge
+git submodule update --remote --init --recursive --merge
 ```
 
 ## TODO list
