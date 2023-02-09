@@ -1,7 +1,7 @@
 import subprocess
 
 from .submodules import process_utils_dev
-import app_runner
+from . import app_runner
 
 
 class PythonAppManager:
