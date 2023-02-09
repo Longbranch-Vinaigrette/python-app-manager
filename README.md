@@ -19,9 +19,17 @@ This module uses these packages:
 This repository uses the following submodule/s:
 * [Process utils](https://github.com/Perseverancia-company/sub.process-utils)
 
-The script install/updates the submodules automatically using the following command:
+The program automatically installs/updates the submodules using the following command:
 
 
 ```bash
 submodule update --remote --init --recursive --merge
 ```
+
+## TODO list
+
+- [X] Automatically Install missing submodules
+- [X] Be able to install dependencies, build and start an app
+- [ ] Discover repositories locally on the user computer
+- [ ] Be able to clone/pull user repositories
+

@@ -4,7 +4,7 @@ import subprocess
 from ..packages import Packages
 
 
-def check_and_run_pipenv(path):
+def check_and_run_pipenv(path, args):
     """Check if the app uses pipenv and run the app
 
     :returns True if it was successful"""
