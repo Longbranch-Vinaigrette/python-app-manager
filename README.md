@@ -30,8 +30,10 @@ git submodule update --remote --init --recursive --merge
 
 - [X] Automatically Install missing submodules
 - [ ] Be able to install dependencies, build and start an app
-  - [X] For normal python apps(and that start with main.py)
-  - [ ] For Django apps
+  - [ ] Install/Update app submodules
+  - [ ] Build and start
+    - [X] For normal python apps(and that start with main.py)
+    - [ ] For Django apps
 - [ ] Discover repositories locally on the user computer
 - [ ] Be able to clone/pull user repositories
 
