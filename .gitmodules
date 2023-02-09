@@ -1,3 +1,0 @@
-[submodule "process_utils"]
-	path = src/submodules/process_utils
-	url = git@github.com:Perseverancia-company/sub.process-utils.git
