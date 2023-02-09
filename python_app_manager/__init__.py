@@ -1,6 +1,7 @@
+import os
 import subprocess
 
-from .submodules.py_gitconfig import Gitconfig
+from python_app_manager.submodules.py_gitconfig import Gitconfig
 
 from . import app_runner
 
@@ -18,18 +19,21 @@ def setup_submodules(app_path: str):
         return
 
     # Get submodules paths
-    # Check if these submodules are installed
-
-    for folder in os.listdir(submodule_path):
-        is_empty = not os.listdir(f"{submodules_path}{os.path.sep}"
-                                  f"{folder}")
+    for key in list(gitconfig.keys()):
+        # This might not work on windows
+        relative_path = f"{gitconfig[key]['path']}"
+        submodule_path = f"{app_path}{os.path.sep}{relative_path}"
+        is_empty = not os.listdir(submodule_path)
 
         if is_empty:
             # Install submodules and return
-            print("There's a submodule missing, installing it...")
+            print("There's a submodule missing, installing every submodule "
+                  "in existence...")
             subprocess.run(["/bin/bash",
                             "-c",
-                            "git submodule update --remote --init --recursive --merge"])
+                            # Cd our way in
+                            f"cd {app_path};"
+                            "git submodule update --remote --init --recursive --merge;"])
             return
 
 
@@ -39,6 +43,9 @@ class PythonAppManager:
 
         :args Parsed arguments given by the command line"""
         self.args = args
+
+        # Setup submodules if they exist
+        setup_submodules(self.args.path)
 
         if args.start:
             self.start_app()
