@@ -1,0 +1,3 @@
+[submodule "process_utils_dev"]
+	path = python_app_manager/submodules/process_utils_dev
+	url = git@github.com:Perseverancia-company/sub.process-utils.git

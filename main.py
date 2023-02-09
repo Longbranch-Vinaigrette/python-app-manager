@@ -1,4 +1,6 @@
 import argparse
+import os
+
 from python_app_manager import PythonAppManager
 
 parser = argparse.ArgumentParser(description="Python app manager")
@@ -20,6 +22,12 @@ parser.add_argument("--rock-hard-stop", action="store_true",
 
 # Parse args
 args = parser.parse_args()
+
+# Install submodules automatically just in case
+for folder in os.listdir(f"{os.getcwd()}{os.path.sep}"):
+    # submodule update --remote --init --recursive --merge
+    pass
+
 
 # Check if the path was given
 app_path = args.path

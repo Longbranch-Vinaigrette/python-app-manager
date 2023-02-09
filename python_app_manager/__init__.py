@@ -1,6 +1,6 @@
 import subprocess
 
-from src.submodules import process_utils
+from .submodules import process_utils_dev
 import app_runner
 
 
@@ -22,7 +22,7 @@ class PythonAppManager:
 
         It kills every process in the given directory
         Be it the main process, subprocesses or even zombie processes"""
-        process_utils.kill_all_by_cwd_and_subfolders(self.args.path, 15)
+        process_utils_dev.kill_all_by_cwd_and_subfolders(self.args.path, 15)
 
     def start_app(self):
         """Starts the app"""

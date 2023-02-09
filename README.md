@@ -19,7 +19,7 @@ This module uses these packages:
 This repository uses the following submodule/s:
 * [Process utils](https://github.com/Perseverancia-company/sub.process-utils)
 
-To easily install the submodules on this project use the following command:
+The script install/updates the submodules automatically using the following command:
 
 
 ```bash
