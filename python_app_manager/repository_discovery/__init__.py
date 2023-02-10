@@ -1,7 +1,5 @@
 import os
 
-from ..longbranch_vinaigrette_py_desktop_entry import DesktopEntry
-
 
 class Discovery:
     repositories: list = []
@@ -42,8 +40,3 @@ class Discovery:
     def get_repositories(self) -> list:
         """Get repositories"""
         return self.repositories
-
-    def toggle_start_on_boot(self):
-        """Toggle start on boot"""
-        desktop_entry = DesktopEntry(app_path, app_name)
-        desktop_entry.toggle_start_on_boot()

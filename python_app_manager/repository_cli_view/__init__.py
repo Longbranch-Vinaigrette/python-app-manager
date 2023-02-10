@@ -17,6 +17,11 @@ class clr:
     UNDERLINE = '\033[4m'
 
 
+def print_error(msg: str):
+    """Print an error"""
+    print(f"{clr.FAIL}{msg}{clr.ENDC}")
+
+
 class RepositoryCLIView:
     repositories: list = []
 
