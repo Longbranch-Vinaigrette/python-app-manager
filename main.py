@@ -3,7 +3,7 @@ import os
 import subprocess
 
 import python_app_manager
-from python_app_manager import PythonAppManager
+from python_app_manager import PythonAppManager, Discovery
 
 
 def install_submodules():
@@ -55,9 +55,8 @@ if __name__ == "__main__":
     if not app_path:
         # No path has been given, let's start discovering repositories on the
         # user computer.
-        message = "Discovering apps"
-        print(message)
-        print("TODO: Discovery.")
+        print("This app will start discovering repositories at the home folder")
+        dis = Discovery()
     else:
         # A path to an app has been given, do stuff around
         app_manager = PythonAppManager(args=args)
