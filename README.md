@@ -33,6 +33,11 @@ git submodule update --remote --init --recursive --merge
   - [X] Install/Update app submodules
   - [ ] Build and start
     - [X] For normal python apps(and that start with main.py)
-    - [ ] For Django apps
+    - [ ] For Django apps(I think I don't actually need this rn)
+  - [ ] Make an app start when the os boots up
+  - [ ] Stop/Start repositories by name
 - [X] Discover repositories locally on the user computer
-
+- [ ] Feedback
+  - [ ] Show every repository
+    - [ ] And their status, whether they are running or not
+  - [ ] Show running apps/repositories

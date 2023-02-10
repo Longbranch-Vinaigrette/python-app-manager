@@ -2,7 +2,8 @@ import os
 import pprint
 import subprocess
 
-from python_app_manager.submodules.py_gitconfig import Gitconfig
+from .submodules.py_gitconfig import Gitconfig
+from .submodules import py_proces_utils
 
 from . import app_runner
 
@@ -59,10 +60,7 @@ class PythonAppManager:
 
         It kills every process in the given directory
         Be it the main process, subprocesses or even zombie processes"""
-        # It's going to be imported here, in case it doesn't exist.
-        from .submodules import process_utils_dev
-
-        process_utils_dev.kill_all_by_cwd_and_subfolders(self.args.path, 15)
+        py_proces_utils.kill_all_by_cwd_and_subfolders(self.args.path, 15)
 
     def start_app(self):
         """Starts the app"""
@@ -87,6 +85,8 @@ class Discovery:
 
         print("\nRepositories found: ")
         pprint.pprint(self.repositories)
+
+        # Check which repositories are running and which aren't
 
     def discover_repositories(self, path: str, deepness: int, prepend: str = ""):
         """Get every repository situated at home or one folder below"""
