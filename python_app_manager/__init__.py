@@ -4,8 +4,8 @@ import subprocess
 
 import psutil
 
-from .submodules.py_gitconfig import Gitconfig
-from .submodules import py_proces_utils
+from .longbranch_vinaigrette_py_gitconfig import Gitconfig
+from . import longbranch_vinaigrette_py_proces_utils as py_process_utils
 
 from . import app_runner
 
