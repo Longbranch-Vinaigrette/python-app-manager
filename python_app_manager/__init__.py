@@ -2,6 +2,8 @@ import os
 import pprint
 import subprocess
 
+import psutil
+
 from .submodules.py_gitconfig import Gitconfig
 from .submodules import py_proces_utils
 
@@ -76,67 +78,3 @@ class PythonAppManager:
         elif app_runner.run_simple_app(self.args):
             return
 
-
-class Discovery:
-    repositories: list = []
-
-    def __init__(self):
-        self.discover_repositories_recursively()
-
-        # Print repositories and app statuses
-        # Console colors
-        class clr:
-            HEADER = '\033[95m'
-            OKBLUE = '\033[94m'
-            OKCYAN = '\033[96m'
-            OKGREEN = '\033[92m'
-            WARNING = '\033[93m'
-            FAIL = '\033[91m'
-            ENDC = '\033[0m'
-            BOLD = '\033[1m'
-            UNDERLINE = '\033[4m'
-
-        print("\nRepositories: ")
-        for repository in self.repositories:
-            name = repository.split(os.path.sep)[-1]
-            print(f"- Found {name}")
-            print(f"\tIts path: {repository}")
-
-            # Check which repositories are running and which aren't
-            app_status = py_proces_utils.get_processes_and_subprocesses_by_cwd(repository)
-
-            # It's an array, if its length is zero, then the app is not running
-            if len(app_status) <= 0:
-                print(f"\t{clr.FAIL}Status: Not running{clr.ENDC}")
-            else:
-                print(f"\t{clr.OKGREEN}Status: Running{clr.ENDC}")
-
-    def discover_repositories(self, path: str, deepness: int, prepend: str = ""):
-        """Get every repository situated at home or one folder below"""
-        deepness -= 1
-
-        # Check the depth
-        if deepness == 0:
-            return
-
-        for name in os.listdir(path):
-            current_path = f"{path}{os.path.sep}{name}"
-            # print(f"{prepend}\\{name}")
-
-            # Check if it's a folder or not
-            if os.path.isdir(current_path):
-                # It's a folder
-                # Check if it's a repository
-                if os.path.exists(f"{current_path}{os.path.sep}.git"):
-                    # Add it to the list
-                    self.repositories.append(current_path)
-                else:
-                    # It's not a repository but, we have to look inside it
-                    self.discover_repositories(current_path,
-                                              deepness,
-                                              prepend=f"{prepend}|\t")
-
-    def discover_repositories_recursively(self):
-        """Discover repositories recursively"""
-        # With three levels of depth, discover repositories
-        return self.discover_repositories(os.path.expanduser("~"), 4)

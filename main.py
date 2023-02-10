@@ -3,7 +3,9 @@ import os
 import subprocess
 
 import python_app_manager
-from python_app_manager import PythonAppManager, Discovery
+from python_app_manager import PythonAppManager
+from python_app_manager.repository_discovery import Discovery
+from python_app_manager.repository_cli_view import RepositoryCLIView
 
 
 def install_submodules():
@@ -57,6 +59,8 @@ if __name__ == "__main__":
         # user computer.
         print("This app will start discovering repositories at the home folder")
         dis = Discovery()
+        repositories_status = RepositoryCLIView(dis.get_repositories())
+        repositories_status.show_repositories()
     else:
         # A path to an app has been given, do stuff around
         app_manager = PythonAppManager(args=args)
