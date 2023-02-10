@@ -1,6 +1,8 @@
 import os
 import psutil
 
+from ..repository_settings import RepositorySettings
+
 
 # Console colors
 class clr:
@@ -18,58 +20,19 @@ class clr:
 class RepositoryCLIView:
     repositories: list = []
 
-    def __init__(self, repositories: list):
-        # #KeepItDRY
-        for repository in repositories:
-            name = repository.split(os.path.sep)[-1]
-
-            repository_info = {
-                "name": name,
-                "path": repository
-            }
-
-            self.repositories.append(repository_info)
-
-    def find_by_cwd(self, processes: list, cwd: str):
-        """Find a process by cwd on a given list of processes"""
-        for proc in processes:
-            if proc["cwd"] == cwd:
-                return proc
-        return None
-
-    def update_repositories_status(self):
-        """Update repositories status
-
-        The status is whether a repository is running or not"""
-        # Get every running process
-        processes = []
-        for proc in psutil.process_iter(["pid", "name", "cmdline", "cwd"]):
-            pinfo: str = proc.info
-            processes.append(pinfo)
-
-        # Show to the user which repositories are running and which aren't
-        for repository in self.repositories:
-            # Check which repositories are running
-            app_status = self.find_by_cwd(processes, repository["path"])
-
-            # Status types:
-            # running, restarting, stopped, killed, not_running
-            # I don't know if I'm going to implement the other statuses
-            if app_status:
-                repository["status"] = "running"
-            else:
-                repository["status"] = "not_running"
+    def __init__(self, repository_settings: RepositorySettings):
+        self.repository_settings = repository_settings
 
     def show_repositories(self):
         """Show every repository running and not running"""
         # Update repositories
-        self.update_repositories_status()
+        self.repository_settings.update_repositories_status()
 
         # Print repositories and app statuses
         print(f"\n{clr.UNDERLINE}Repositories{clr.ENDC}")
 
         # Show to the user which repositories are running and which aren't
-        for repository in self.repositories:
+        for repository in self.repository_settings.get_repositories():
             print(f"- {repository['name']}")
             print(f"\tIts path: {repository['path']}")
 
@@ -93,9 +56,9 @@ class RepositoryCLIView:
     def print_repositories_as_json(self):
         """For output capturing"""
         # Update repositories
-        self.update_repositories_status()
+        self.repository_settings.update_repositories_status()
 
     def show_only_running_repositories(self):
         """Show only repositories that are running"""
         # Update repositories
-        self.update_repositories_status()
+        self.repository_settings.update_repositories_status()

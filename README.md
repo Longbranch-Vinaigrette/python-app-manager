@@ -34,7 +34,8 @@ git submodule update --remote --init --recursive --merge
   - [X] Build and start
     - [X] Repositories that use Pipenv
     - [X] For normal python apps(and that start with main.py)
-  - [ ] Make an app start when the os boots up
+  - [ ] Cache data and settings
+    - [ ] Make an app start when the os boots up
   - [ ] Stop/Start repositories by name
 - [X] Discover repositories locally on the user computer
   - [ ] Improve the function to retrieve subprocesses by cwd, to do this fetch data only once

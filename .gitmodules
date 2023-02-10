@@ -7,3 +7,6 @@
 [submodule "python_app_manager/longbranch_vinaigrette_py_process_utils"]
 	path = python_app_manager/longbranch_vinaigrette_py_process_utils
 	url = git@github.com:Longbranch-Vinaigrette/longbranch_vinaigrette_py_process_utils.git
+[submodule "python_app_manager/longbranch_vinaigrette_py_sqlite3_utils"]
+	path = python_app_manager/longbranch_vinaigrette_py_sqlite3_utils
+	url = git@github.com:Longbranch-Vinaigrette/longbranch_vinaigrette_py_sqlite3_utils.git
