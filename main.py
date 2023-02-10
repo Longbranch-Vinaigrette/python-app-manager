@@ -10,12 +10,16 @@ from python_app_manager.repository_cli_view import RepositoryCLIView
 
 def install_submodules():
     # Install submodules automatically just in case
-    submodules_path = f"{os.getcwd()}{os.path.sep}" \
-                         f"python_app_manager{os.path.sep}" \
-                         f"submodules"
-    for folder in os.listdir(submodules_path):
-        is_empty = not os.listdir(f"{submodules_path}{os.path.sep}"
-                                  f"{folder}")
+    first_part = "longbranch_vinaigrette_py_"
+    submodules_name = [
+        f"{first_part}desktop_entry",
+        f"{first_part}gitconfig",
+        f"{first_part}process_utils"
+    ]
+    for name in submodules_name:
+        is_empty = not os.listdir(f"{os.getcwd()}{os.path.sep}"
+                                  f"python_app_manager{os.path.sep}"
+                                  f"{name}")
 
         if is_empty:
             # Install submodules and return

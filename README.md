@@ -31,10 +31,9 @@ git submodule update --remote --init --recursive --merge
 - [X] Automatically Install missing submodules
 - [ ] Be able to install dependencies, build and start an app
   - [X] Install/Update app submodules
-  - [ ] Build and start
+  - [X] Build and start
     - [X] Repositories that use Pipenv
     - [X] For normal python apps(and that start with main.py)
-    - [ ] For Django apps(I think I don't actually need this rn)
   - [ ] Make an app start when the os boots up
   - [ ] Stop/Start repositories by name
 - [X] Discover repositories locally on the user computer

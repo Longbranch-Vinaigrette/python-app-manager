@@ -4,6 +4,6 @@
 [submodule "python_app_manager/longbranch_vinaigrette_py_gitconfig"]
 	path = python_app_manager/longbranch_vinaigrette_py_gitconfig
 	url = git@github.com:Longbranch-Vinaigrette/longbranch_vinaigrette_py_gitconfig.git
-[submodule "python_app_manager/longbranch_vinaigrette_py_proces_utils"]
-	path = python_app_manager/longbranch_vinaigrette_py_proces_utils
-	url = git@github.com:Longbranch-Vinaigrette/longbranch_vinaigrette_py_proces_utils.git
+[submodule "python_app_manager/longbranch_vinaigrette_py_process_utils"]
+	path = python_app_manager/longbranch_vinaigrette_py_process_utils
+	url = git@github.com:Longbranch-Vinaigrette/longbranch_vinaigrette_py_process_utils.git
