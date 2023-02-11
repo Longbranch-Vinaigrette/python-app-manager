@@ -5,6 +5,7 @@ import subprocess
 import psutil
 
 from .local_repository import LocalRepository
+from .local_repository import setup_submodules
 
 
 class PythonAppManager(LocalRepository):
