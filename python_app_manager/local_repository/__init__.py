@@ -73,14 +73,14 @@ class LocalRepository:
                         scripts = data['scripts']
 
                         if "build" in scripts:
-                            cmds += f"{scripts['build']};"
+                            cmds += f"npm run build;"
                             print(f"{clr.OKBLUE}Found build script{clr.ENDC}")
                         else:
                             print(f"{clr.OKBLUE}The app doesn't uses a build script "
                                   f"{clr.ENDC}")
 
                         if "start" in scripts:
-                            cmds += f"{scripts['start']};"
+                            cmds += f"npm run start;"
                         else:
                             print(f"{clr.WARNING} Warning: No start script found "
                                   f"running in simple mode 'node index.js'{clr.ENDC}")
