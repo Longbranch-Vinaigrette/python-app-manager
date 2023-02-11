@@ -5,7 +5,8 @@ import subprocess
 from ..longbranch_vinaigrette_py_gitconfig import Gitconfig
 from ..longbranch_vinaigrette_py_desktop_entry import DesktopEntry
 from .. import longbranch_vinaigrette_py_process_utils as process_utils
-from ..repository_cli_view import print_error, clr
+from ..repository_cli_view import print_error, clr, print_ok_blue, \
+    print_ok_green, print_warning
 
 
 def setup_submodules(app_path: str):
@@ -55,13 +56,65 @@ class LocalRepository:
         Be it the main process, subprocesses or even zombie processes"""
         process_utils.kill_all_by_cwd_and_subfolders(self.path, 15)
 
+    def get_nodejs_commands(self):
+        """Get nodejs commands
+
+        If it finds build it adds it
+        And at last, after building, it adds the start command"""
+        package_json_path = f"{self.path}{os.path.sep}package.json"
+        cmds = ""
+        if os.path.exists(package_json_path):
+            # Fetch commands
+            with open(package_json_path) as f:
+                try:
+                    data = json.load(f)
+
+                    if "scripts" in data:
+                        scripts = data['scripts']
+
+                        if "build" in scripts:
+                            cmds += f"{scripts['build']};"
+                            print(f"{clr.OKBLUE}Found build script{clr.ENDC}")
+                        else:
+                            print(f"{clr.OKBLUE}The app doesn't uses a build script "
+                                  f"{clr.ENDC}")
+
+                        if "start" in scripts:
+                            cmds += f"{scripts['start']};"
+                        else:
+                            print(f"{clr.WARNING} Warning: No start script found "
+                                  f"running in simple mode 'node index.js'{clr.ENDC}")
+                            # "If start doesn't exist, just start it normally"
+                            # - Sigma grindset rule #3492929525235234243245235
+                            cmds += f"node index.js"
+                    else:
+                        print(f"{clr.WARNING}Warning: Scripts field doesn't exist "
+                              f"in package.json{clr.ENDC}")
+                        # Start normally
+                        cmds += f"node index.js"
+                except:
+                    # Start normally
+                    print(f"{clr.WARNING}Warning: Couldn't load data from "
+                          f"package.json{clr.ENDC}")
+                    cmds += f"node index.js"
+        return cmds
+
     def get_app_run_command(self):
-        """Get app run command"""
+        """Get app run command
+
+        First it checks if the app has a main.py file
+
+        Then it checks if the app has a package.json
+        If it doesn't find any commands in it, it will just run
+        'node index.js'
+        """
         # Python
         python_script_path = f"{self.path}{os.path.sep}main.py"
 
         # Node.js
-        nodejs_script_path = f"{self.path}{os.path.sep}index.js"
+        package_json_path = f"{self.path}{os.path.sep}package.json"
+
+        cmds = ""
 
         # It's a python app
         if os.path.exists(python_script_path):
@@ -82,44 +135,13 @@ class LocalRepository:
             else:
                 # Normal python app
                 return f"python3 main.py {self.args};"
-        elif os.path.exists(nodejs_script_path):
+        elif os.path.exists(package_json_path):
             print(f"{clr.OKBLUE}Detected Node.js app{clr.ENDC}")
-
-            package_json_path = f"{self.path}{os.path.sep}package.json"
-
             # Commands
             cmds = "npm install;"
+            cmds += self.get_nodejs_commands()
 
-            if os.path.exists(package_json_path):
-                # Fetch commands
-                with open(package_json_path) as f:
-                    try:
-                        data = json.load(f)
-
-                        if "scripts" in data:
-                            scripts = data['scripts']
-
-                            if "build" in scripts:
-                                cmds += f"{scripts['build']};"
-
-                            if "start" in scripts:
-                                cmds += f"{scripts['start']};"
-                            else:
-                                print(f"{clr.WARNING}"
-                                      f"Warning: No start script found{clr.ENDC}")
-                                # "If start doesn't exist, just start it normally"
-                                # - Sigma grindset rule #3492929525235234243245235
-                                cmds += f"node index.js"
-                        else:
-                            print(f"{clr.WARNING}Warning: Scripts field doesn't exist "
-                                  f"in package.json{clr.ENDC}")
-                            # Start normally
-                            cmds += f"node index.js"
-                    except:
-                        # Start normally
-                        print(f"{clr.WARNING}Warning: Couldn't load data from "
-                              f"package.json{clr.ENDC}")
-                        cmds += f"node index.js"
+        return cmds
 
     def start_app(self):
         """Starts the app"""
@@ -136,10 +158,11 @@ class LocalRepository:
                                    f"{run_cmd}"])
 
             if process.stdout:
+                print_ok_green("Output:")
                 print(process.stdout)
 
             if process.stderr:
-                print(f"{clr.FAIL}{process.stderr}{clr.ENDC}")
+                print_error("Error(Exit code != 0): " + process.stderr)
 
             return process
         # Error

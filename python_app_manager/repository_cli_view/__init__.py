@@ -22,6 +22,21 @@ def print_error(msg: str):
     print(f"{clr.FAIL}{msg}{clr.ENDC}")
 
 
+def print_ok_blue(msg: str):
+    """Print an ok message"""
+    print(f"{clr.OKBLUE}{msg}{clr.ENDC}")
+
+
+def print_ok_green(msg: str):
+    """Print an ok message"""
+    print(f"{clr.OKGREEN}{msg}{clr.ENDC}")
+
+
+def print_warning(msg: str):
+    """Print warning message"""
+    print(f"{clr.WARNING}{msg}{clr.ENDC}")
+
+
 class RepositoryCLIView:
     repositories: list = []
 
