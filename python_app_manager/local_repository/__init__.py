@@ -1,10 +1,11 @@
 import json
 import os
+import subprocess
 
 from ..longbranch_vinaigrette_py_gitconfig import Gitconfig
 from ..longbranch_vinaigrette_py_desktop_entry import DesktopEntry
 from .. import longbranch_vinaigrette_py_process_utils as process_utils
-from ..repository_cli_view import print_error
+from ..repository_cli_view import print_error, clr
 
 
 def setup_submodules(app_path: str):
@@ -28,8 +29,9 @@ def setup_submodules(app_path: str):
 
         if is_empty:
             # Install submodules and return
-            print("There's a submodule missing, installing every submodule "
-                  "in existence...")
+            print(f"{clr.BOLD}There's a submodule missing, installing every submodule "
+                  f"in existence...{clr.ENDC}")
+            print(f"Submodule path: {submodule_path}")
             subprocess.run(["/bin/bash",
                             "-c",
                             # Cd our way in
@@ -63,6 +65,8 @@ class LocalRepository:
 
         # It's a python app
         if os.path.exists(python_script_path):
+            print(f"{clr.OKBLUE}Detected python app{clr.ENDC}")
+
             # Check if it uses pipenv
             if os.path.exists(f"{self.path}{os.path.sep}Pipfile"):
                 # If the user doesn't have pipenv but the file Pipfile exists
@@ -79,6 +83,8 @@ class LocalRepository:
                 # Normal python app
                 return f"python3 main.py {self.args};"
         elif os.path.exists(nodejs_script_path):
+            print(f"{clr.OKBLUE}Detected Node.js app{clr.ENDC}")
+
             package_json_path = f"{self.path}{os.path.sep}package.json"
 
             # Commands
@@ -99,20 +105,21 @@ class LocalRepository:
                             if "start" in scripts:
                                 cmds += f"{scripts['start']};"
                             else:
-                                print("Warning: No start script found")
+                                print(f"{clr.WARNING}"
+                                      f"Warning: No start script found{clr.ENDC}")
                                 # "If start doesn't exist, just start it normally"
                                 # - Sigma grindset rule #3492929525235234243245235
                                 cmds += f"node index.js"
                         else:
-                            print("Warning: Scripts field doesn't exist "
-                                  "in package.json")
+                            print(f"{clr.WARNING}Warning: Scripts field doesn't exist "
+                                  f"in package.json{clr.ENDC}")
                             # Start normally
                             cmds += f"node index.js"
                     except:
                         # Start normally
-                        print("Warning: Couldn't load data from package.json")
+                        print(f"{clr.WARNING}Warning: Couldn't load data from "
+                              f"package.json{clr.ENDC}")
                         cmds += f"node index.js"
-
 
     def start_app(self):
         """Starts the app"""
@@ -123,10 +130,18 @@ class LocalRepository:
         run_cmd = self.get_app_run_command()
         if run_cmd:
             # Run app
-            return subprocess.run(["/bin/bash",
+            process = subprocess.run(["/bin/bash",
                                    "-c",
                                    f"cd {self.path};"
                                    f"{run_cmd}"])
+
+            if process.stdout:
+                print(process.stdout)
+
+            if process.stderr:
+                print(f"{clr.FAIL}{process.stderr}{clr.ENDC}")
+
+            return process
         # Error
         return print_error("Couldn't find a way to run the app.")
 

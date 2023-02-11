@@ -71,4 +71,10 @@ if __name__ == "__main__":
         # A path to an app has been given, do stuff around
         app_manager = PythonAppManager(args=args)
 
+        if args.start:
+            app_manager.start_app()
+
+        if args.rock_hard_stop:
+            app_manager.rock_hard_stop()
+
     print("Finished")
