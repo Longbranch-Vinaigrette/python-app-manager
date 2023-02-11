@@ -7,3 +7,6 @@
 [submodule "python_app_manager/longbranch_vinaigrette_py_process_utils"]
 	path = python_app_manager/longbranch_vinaigrette_py_process_utils
 	url = git@github.com:Longbranch-Vinaigrette/longbranch_vinaigrette_py_process_utils.git
+[submodule "python_app_manager/longbranch_vinaigrette_py_repository_discovery"]
+	path = python_app_manager/longbranch_vinaigrette_py_repository_discovery
+	url = git@github.com:Longbranch-Vinaigrette/longbranch_vinaigrette_py_repository_discovery.git

@@ -5,8 +5,8 @@ import subprocess
 from ..longbranch_vinaigrette_py_gitconfig import Gitconfig
 from ..longbranch_vinaigrette_py_desktop_entry import DesktopEntry
 from .. import longbranch_vinaigrette_py_process_utils as process_utils
-from ..repository_cli_view import print_error, clr, print_ok_blue, \
-    print_ok_green, print_warning
+from ..longbranch_vinaigrette_py_repository_discovery.repository_cli_view \
+    import print_error, clr, print_ok_blue, print_ok_green, print_warning
 
 
 def setup_submodules(app_path: str):

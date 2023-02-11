@@ -4,9 +4,6 @@ import subprocess
 
 import python_app_manager
 from python_app_manager import PythonAppManager
-from python_app_manager.repository_discovery import Discovery
-from python_app_manager.repository_cli_view import RepositoryCLIView
-from python_app_manager.repository_settings import RepositorySettings
 
 
 def install_submodules():
@@ -60,6 +57,13 @@ if __name__ == "__main__":
     # Check if the path was given
     app_path = args.path
     if not app_path:
+        from python_app_manager.longbranch_vinaigrette_py_repository_discovery \
+            .repository_discovery import Discovery
+        from python_app_manager.longbranch_vinaigrette_py_repository_discovery \
+            .repository_cli_view import RepositoryCLIView
+        from python_app_manager.longbranch_vinaigrette_py_repository_discovery \
+            .repository_settings import RepositorySettings
+
         # No path has been given, let's start discovering repositories on the
         # user computer.
         print("This app will start discovering repositories at the home folder")
