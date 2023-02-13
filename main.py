@@ -9,6 +9,7 @@ from python_app_manager import PythonAppManager
 def install_submodules():
     # Install submodules automatically just in case
     first_part = "longbranch_vinaigrette_py_"
+    # TODO: THIS COULD BE IPMROVED
     submodules_name = [
         f"{first_part}desktop_entry",
         f"{first_part}gitconfig",
@@ -41,6 +42,11 @@ if __name__ == "__main__":
                         help="Start the application by the given path.")
     parser.add_argument("--stop", action="store_true",
                         help="Stops an application by the given path.")
+    parser.add_argument("--setup-all", action="store_true",
+                        help="Setups every app if possible, it installs/updates submodules "
+                        "if they are detected, also installs dependencies if they are "
+                        "detected(because I won't add support for everything as there are "
+                        "a lot of languages and options).")
 
     # Other options
     parser.add_argument("--rock-hard-stop", action="store_true",

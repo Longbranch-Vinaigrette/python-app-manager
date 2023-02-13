@@ -26,15 +26,20 @@ The program automatically installs/updates the submodules using the following co
 git submodule update --remote --init --recursive --merge
 ```
 
+
 ## TODO list
 
-- [X] Automatically Install missing submodules
 - [X] Be able to install dependencies, build and start an app
   - [X] Install/Update app submodules
   - [X] Build and start
     - [X] Repositories that use Pipenv
     - [X] For normal python apps(and that start with main.py)
 - [X] Discover repositories locally on the user computer
+  - [ ] Add an option to setup all repositories
+    - [ ] Install missing submodules of every discovered repository
+      - [ ] Set them on branch 'main'
+    - [ ] Detect app types
+      - [ ] Add an option to install dependencies
 - [X] Feedback
   - [X] Show every repository
   - [X] Show running apps/repositories
