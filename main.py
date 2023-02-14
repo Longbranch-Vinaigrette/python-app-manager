@@ -2,18 +2,18 @@ import argparse
 import os
 import subprocess
 
-import python_app_manager
 from python_app_manager import PythonAppManager
 
 
 def install_submodules():
     # Install submodules automatically just in case
     first_part = "longbranch_vinaigrette_py_"
-    # TODO: THIS COULD BE IPMROVED
     submodules_name = [
-        f"{first_part}desktop_entry",
-        f"{first_part}gitconfig",
-        f"{first_part}process_utils"
+        f"longbranch_vinaigrette_py_desktop_entry",
+        f"longbranch_vinaigrette_py_gitconfig",
+        f"longbranch_vinaigrette_py_process_utils"
+        f"longbranch_vinaigrette_py_repository_configuration",
+        f"longbranch_vinaigrette_py_repository_discovery"
     ]
     for name in submodules_name:
         is_empty = not os.listdir(f"{os.getcwd()}{os.path.sep}"
