@@ -23,7 +23,6 @@ class RepositoryManager:
             pprint.pprint(repositories)
 
             for rep_abs_path in repositories:
-                print("Absolute path: ", rep_abs_path)
                 rep_config = RepositoryConfiguration(rep_abs_path)
                 rep_config.setup_submodules()
         else:
