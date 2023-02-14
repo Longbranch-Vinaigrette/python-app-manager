@@ -2,16 +2,15 @@ import argparse
 import os
 import subprocess
 
-from python_app_manager import PythonAppManager
-
 
 def install_submodules():
+    """Hmmm, I think I'm not gonna use this chunk of code"""
     # Install submodules automatically just in case
     first_part = "longbranch_vinaigrette_py_"
     submodules_name = [
         f"longbranch_vinaigrette_py_desktop_entry",
         f"longbranch_vinaigrette_py_gitconfig",
-        f"longbranch_vinaigrette_py_process_utils"
+        f"longbranch_vinaigrette_py_process_utils",
         f"longbranch_vinaigrette_py_repository_configuration",
         f"longbranch_vinaigrette_py_repository_discovery"
     ]
@@ -31,6 +30,8 @@ def install_submodules():
 
 
 if __name__ == "__main__":
+    from python_app_manager import PythonAppManager
+
     parser = argparse.ArgumentParser(description="Python app manager")
 
     # App path(for single app setup)
@@ -58,25 +59,13 @@ if __name__ == "__main__":
     # Parse args
     args = parser.parse_args()
 
-    install_submodules()
+    # install_submodules()
 
     # Check if the path was given
     app_path = args.path
     if not app_path:
-        from python_app_manager.longbranch_vinaigrette_py_repository_discovery \
-            .repository_discovery import Discovery
-        from python_app_manager.longbranch_vinaigrette_py_repository_discovery \
-            .repository_cli_view import RepositoryCLIView
-        from python_app_manager.longbranch_vinaigrette_py_repository_discovery \
-            .repository_settings import RepositorySettings
-
-        # No path has been given, let's start discovering repositories on the
-        # user computer.
-        print("This app will start discovering repositories at the home folder")
-        dis = Discovery()
-        repository_settings = RepositorySettings(dis.get_repositories())
-        repositories_status = RepositoryCLIView(repository_settings)
-        repositories_status.show_repositories()
+        from python_app_manager.repository_manager import RepositoryManager
+        RepositoryManager(args)
     else:
         # A path to an app has been given, do stuff around
         app_manager = PythonAppManager(args=args)
