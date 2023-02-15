@@ -48,11 +48,12 @@ if __name__ == "__main__":
                         "if they are detected, also installs dependencies if they are "
                         "detected(because I won't add support for everything as there are "
                         "a lot of languages and options).")
-
-    # Other options
     parser.add_argument("--rock-hard-stop", action="store_true",
                         help="Stops the application on the given path by"
                              "using brute force.")
+    parser.add_argument("--update-submodules", action="store_true",
+                        help="Updates app submodules(Requires --path).")
+
     parser.add_argument("--args", type=str,
                         help="Application arguments.")
 
@@ -69,3 +70,9 @@ if __name__ == "__main__":
     else:
         # A path to an app has been given, do stuff around
         app_manager = PythonAppManager(args.path)
+
+        if args.update_submodules:
+            app_manager.update_submodules()
+
+        if args.stop:
+            app_manager.stop_app()
