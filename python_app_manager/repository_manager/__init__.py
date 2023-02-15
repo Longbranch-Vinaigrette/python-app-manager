@@ -2,20 +2,8 @@ import pprint
 import psutil
 
 from ..longbranch_vinaigrette_py_repository_discovery.src \
-    .repository_discovery import Discovery
-from ..longbranch_vinaigrette_py_repository_discovery.src \
-    .repository_cli_view import RepositoryCLIView
-from ..longbranch_vinaigrette_py_repository_discovery.src \
-    .repository_settings import RepositorySettings
-from ..longbranch_vinaigrette_py_repository_configuration import RepositoryConfiguration
-from ..longbranch_vinaigrette_py_repository_analyzer.src.repository_information \
-    import RepositoryInformation
-
-from ..longbranch_vinaigrette_py_repository_analyzer.src.repository_information \
-    import RepositoryInformation
-
+    .repository_discovery import RepositoryDiscovery
 from .. import cli_color_messages_python as clr
-
 from ..longbranch_vinaigrette_py_repository_analyzer.src.repositories_processes \
     import RepositoriesProcesses
 
@@ -24,8 +12,19 @@ class RepositoryManager:
     def __init__(self, args=None):
         # No path has been given, let's start discovering repositories on the
         # user computer.
-        print("This app will start discovering repositories at the home folder")
-        dis = Discovery()
+        dis = RepositoryDiscovery()
+        rep_procs = RepositoriesProcesses(dis.get_repositories())
+
+        if args.setup_all:
+            pass
+        else:
+            clr.print_ok_blue("No command argument detected, showing a list of "
+                              "running repositories/user apps\n")
+            running_apps: dict = rep_procs.get_running_apps()
+            for key in list(running_apps.keys()):
+                app = running_apps[key]
+                clr.print_bold(app["appInfo"]["name"])
+                clr.print_ok_green("\tRunning")
 
         # if args.setup_all:
         #     repositories = dis.get_repositories()

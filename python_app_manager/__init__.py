@@ -4,24 +4,19 @@ import subprocess
 
 import psutil
 
-from .local_repository import LocalRepository
-from .local_repository import setup_submodules
+from .longbranch_vinaigrette_py_repository_discovery.src.repository_discovery \
+    import RepositoryDiscovery
 
 
-class PythonAppManager(LocalRepository):
-    def __init__(self, args=None):
-        """Python app manager
+class PythonAppManager:
+    def __init__(self, path: str):
+        """Python app manager"""
+        self.path = path
 
-        :args Parsed arguments given by the command line"""
-        super().__init__(args.path)
-        self.args = args
+    def start_app(self):
+        """Start the given app"""
+        pass
 
-        # Setup submodules if they exist
-        setup_submodules(self.args.path)
-
-        if args.start:
-            self.start_app()
-
-        if args.rock_hard_stop:
-            self.rock_hard_stop()
+    def stop_app(self):
+        """Stop the given app"""
 
