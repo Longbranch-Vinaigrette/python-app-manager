@@ -65,7 +65,7 @@ if __name__ == "__main__":
     app_path = args.path
     if not app_path:
         from python_app_manager.repository_manager import RepositoryManager
-        RepositoryManager(args)
+        RepositoryManager(args=args)
     else:
         # A path to an app has been given, do stuff around
         app_manager = PythonAppManager(args=args)

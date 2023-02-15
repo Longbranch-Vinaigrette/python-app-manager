@@ -13,3 +13,9 @@
 [submodule "python_app_manager/longbranch_vinaigrette_py_repository_configuration"]
 	path = python_app_manager/longbranch_vinaigrette_py_repository_configuration
 	url = git@github.com:Longbranch-Vinaigrette/longbranch_vinaigrette_py_repository_configuration.git
+[submodule "python_app_manager/longbranch_vinaigrette_py_repository_analyzer"]
+	path = python_app_manager/longbranch_vinaigrette_py_repository_analyzer
+	url = git@github.com:Longbranch-Vinaigrette/longbranch_vinaigrette_py_repository_analyzer.git
+[submodule "python_app_manager/cli_color_messages_python"]
+	path = python_app_manager/cli_color_messages_python
+	url = git@github.com:Longbranch-Vinaigrette/cli_color_messages_python.git
