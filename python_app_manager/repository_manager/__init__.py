@@ -30,10 +30,13 @@ class RepositoryManager:
                 except Exception as ex:
                     clr.print_error(f"Error: {str(ex)}")
         else:
-            clr.print_ok_blue("No command argument detected, showing a list of "
-                              "running repositories/user apps\n")
+            clr.print_ok_blue("Running repositories/user apps")
             running_apps: dict = rep_procs.get_running_apps()
+            print(f"{clr.clr.UNDERLINE}App name{clr.clr.ENDC}\t\t"
+                  f"{clr.clr.UNDERLINE}Status{clr.clr.ENDC}\t\t"
+                  f"{clr.clr.UNDERLINE}PID{clr.clr.ENDC}")
             for key in list(running_apps.keys()):
                 app = running_apps[key]
-                print(f"{clr.clr.BOLD}{app['appInfo']['name']}{clr.clr.ENDC} "
-                      f"{clr.clr.OKGREEN}Running{clr.clr.ENDC}")
+                print(f"{clr.clr.BOLD}{app['appInfo']['name']}{clr.clr.ENDC}\t"
+                      f"{clr.clr.OKGREEN}Running{clr.clr.ENDC}\t\t"
+                      f"{clr.clr.WARNING}{app['pid']}{clr.clr.ENDC}")
