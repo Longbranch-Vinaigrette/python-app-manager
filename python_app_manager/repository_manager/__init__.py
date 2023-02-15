@@ -15,7 +15,7 @@ class RepositoryManager:
         # No path has been given, let's start discovering repositories on the
         # user computer.
         dis = RepositoryDiscovery()
-        rep_procs = RepositoriesProcesses(dis.get_repositories())
+        rep_procs = RepositoriesProcesses(dis.get_repositories(), False)
 
         if args.setup_all:
             repositories = dis.get_repositories()

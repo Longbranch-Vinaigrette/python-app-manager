@@ -20,7 +20,7 @@ class PythonAppManager:
 
     def start_app(self):
         """Start the given app"""
-        pass
+        rep_config = RepositoryConfiguration(self.path)
 
     def stop_app(self):
         """Stop the given app"""
