@@ -23,8 +23,8 @@ class RepositoryManager:
             running_apps: dict = rep_procs.get_running_apps()
             for key in list(running_apps.keys()):
                 app = running_apps[key]
-                clr.print_bold(app["appInfo"]["name"])
-                clr.print_ok_green("\tRunning")
+                print(f"{clr.clr.BOLD}{app['appInfo']['name']}{clr.clr.ENDC} "
+                      f"{clr.clr.OKGREEN}Running{clr.clr.ENDC}")
 
         # if args.setup_all:
         #     repositories = dis.get_repositories()
