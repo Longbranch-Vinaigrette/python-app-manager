@@ -18,6 +18,21 @@ class PythonAppManager:
         """Python app manager"""
         self.path = path
 
+    def setup_all(self):
+        """Setup every app"""
+        dis = RepositoryDiscovery()
+        repositories = dis.get_repositories()
+
+        for rep_abs_path in repositories:
+            try:
+                clr.print_ok_cyan(f"Updating submodules of {rep_abs_path}")
+                rep_config = RepositoryConfiguration(rep_abs_path)
+                rep_config.setup_submodules()
+
+                clr.print_ok_green(f"Ok")
+            except Exception as ex:
+                clr.print_error(f"Error: {str(ex)}")
+
     def start_app(self):
         """Start the given app"""
         discovered = RepositoryDiscovery()

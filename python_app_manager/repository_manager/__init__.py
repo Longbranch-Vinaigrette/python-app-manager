@@ -18,6 +18,7 @@ class RepositoryManager:
         rep_procs = RepositoriesProcesses(dis.get_repositories(), False)
 
         if args.setup_all:
+            dis = RepositoryDiscovery()
             repositories = dis.get_repositories()
 
             for rep_abs_path in repositories:
