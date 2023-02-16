@@ -74,5 +74,9 @@ if __name__ == "__main__":
         if args.update_submodules:
             app_manager.update_submodules()
 
+        if args.start:
+            app_manager.start_app()
+
         if args.stop:
             app_manager.stop_app()
+
