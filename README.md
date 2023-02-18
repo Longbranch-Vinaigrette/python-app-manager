@@ -35,11 +35,13 @@ git submodule update --remote --init --recursive --merge
     - [X] Repositories that use Pipenv
     - [X] For normal python apps(and that start with main.py)
 - [X] Discover repositories locally on the user computer
-  - [ ] Add an option to setup all repositories
-    - [ ] Install missing submodules of every discovered repository
-      - [ ] Set them on branch 'main'
+  - [X] Add an option to setup all repositories
+    - [X] Install missing submodules of every discovered repository
+      - [X] Set them on branch 'main'
     - [ ] Detect app types
-      - [ ] Add an option to install dependencies
+      - [X] Add an option to install dependencies
+- [ ] View
+  - [ ] Show repositories per pages
 - [X] Feedback
   - [X] Show every repository
   - [X] Show running apps/repositories
