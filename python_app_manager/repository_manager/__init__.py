@@ -33,11 +33,27 @@ class RepositoryManager:
         else:
             clr.print_ok_blue("Running repositories/user apps")
             running_apps: dict = rep_procs.get_running_apps()
-            print(f"{clr.clr.UNDERLINE}App name{clr.clr.ENDC}\t\t"
+            print(f"{clr.clr.UNDERLINE}App name{clr.clr.ENDC}\t\t\t"
                   f"{clr.clr.UNDERLINE}Status{clr.clr.ENDC}\t\t"
-                  f"{clr.clr.UNDERLINE}PID{clr.clr.ENDC}")
+                  f"{clr.clr.UNDERLINE}PID{clr.clr.ENDC}\t\t"
+                  f"{clr.clr.UNDERLINE}Framework{clr.clr.ENDC}")
             for key in list(running_apps.keys()):
                 app = running_apps[key]
-                print(f"{clr.clr.BOLD}{app['appInfo']['name']}{clr.clr.ENDC}\t"
+
+                # Check if the app framework was detected or not
+                if app["appInfo"]["framework"] == "Unknown":
+                    app_framework_info = f"{clr.clr.WARNING}" \
+                                         f"{app['appInfo']['framework']}" \
+                                         f"{clr.clr.ENDC}"
+                elif app["appInfo"]["framework"]:
+                    app_framework_info = f"{clr.clr.OKGREEN}" \
+                                         f"{app['appInfo']['framework']}" \
+                                         f"{clr.clr.ENDC}"
+                else:
+                    app_framework_info = f"{clr.clr.FAIL}" \
+                                         f"Error" \
+                                         f"{clr.clr.ENDC}"
+
+                print(f"{clr.clr.BOLD}{app['appInfo']['name']}{clr.clr.ENDC}\t\t\t"
                       f"{clr.clr.OKGREEN}Running{clr.clr.ENDC}\t\t"
-                      f"{clr.clr.WARNING}{app['pid']}{clr.clr.ENDC}")
+                      f"{clr.clr.WARNING}{app['pid']}{clr.clr.ENDC}\t\t" + app_framework_info)

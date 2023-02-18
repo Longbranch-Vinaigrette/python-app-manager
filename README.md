@@ -38,7 +38,7 @@ git submodule update --remote --init --recursive --merge
   - [X] Add an option to setup all repositories
     - [X] Install missing submodules of every discovered repository
       - [X] Set them on branch 'main'
-    - [ ] Detect app types
+    - [ ] Detect app types/Frameworks
       - [X] Add an option to install dependencies
 - [ ] View
   - [ ] Show repositories per pages
