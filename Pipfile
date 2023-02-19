@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 toml = "*"
 psutil = "*"
+tabulate = "*"
+python-dateutil = "*"
 
 [dev-packages]
 
