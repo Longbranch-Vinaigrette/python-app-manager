@@ -9,6 +9,8 @@ from ..longbranch_vinaigrette_py_repository_analyzer.src.repositories_processes 
 from ..longbranch_vinaigrette_py_repository_configuration \
     import RepositoryConfiguration
 
+from ..cli_utils.app_info_table_view import AppInfoTableView
+
 
 class RepositoryManager:
     def __init__(self, args=None):
@@ -32,7 +34,15 @@ class RepositoryManager:
                     clr.print_error(f"Error: {str(ex)}")
         else:
             clr.print_ok_blue("Running repositories/user apps")
+
+            # Get running apps(it's a dictionary in which the keys
+            # are the path to the app/repository)
             running_apps: dict = rep_procs.get_running_apps()
+
+            # Print the apps state as a table
+            table_view = AppInfoTableView(running_apps)
+
+            return
             print(f"{clr.clr.UNDERLINE}App name{clr.clr.ENDC}\t\t\t"
                   f"{clr.clr.UNDERLINE}Status{clr.clr.ENDC}\t\t"
                   f"{clr.clr.UNDERLINE}PID{clr.clr.ENDC}\t\t"
