@@ -97,7 +97,7 @@ class AppInfoTableView:
             if view_status:
                 # If the dictionary has the field pid and it's not None
                 # then it's running
-                if "pid" in app_info and app_info["pid"] is not None:
+                if "pid" in item and item["pid"] is not None:
                     row.append(f"{clr.clr.OKGREEN}"
                                f"Running"
                                f"{clr.clr.ENDC}")
@@ -108,9 +108,9 @@ class AppInfoTableView:
 
             # View the pid
             if view_pid:
-                if "pid" in app_info and app_info["pid"] is not None:
+                if "pid" in item and item["pid"] is not None:
                     row.append(f"{clr.clr.OKCYAN}"
-                               f"{app_info['pid']}"
+                               f"{item['pid']}"
                                f"{clr.clr.ENDC}")
                 else:
                     row.append(f"{clr.clr.FAIL}"
