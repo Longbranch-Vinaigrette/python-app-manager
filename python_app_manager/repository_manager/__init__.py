@@ -17,7 +17,7 @@ class RepositoryManager:
         # No path has been given, let's start discovering repositories on the
         # user computer.
         dis = RepositoryDiscovery()
-        rep_procs = RepositoriesProcesses(dis.get_repositories(), False)
+        rep_procs = RepositoriesProcesses(dis.get_repositories(), debug=False)
 
         if args.setup_all:
             dis = RepositoryDiscovery()
@@ -41,29 +41,3 @@ class RepositoryManager:
 
             # Print the apps state as a table
             table_view = AppInfoTableView(running_apps)
-
-            return
-            print(f"{clr.clr.UNDERLINE}App name{clr.clr.ENDC}\t\t\t"
-                  f"{clr.clr.UNDERLINE}Status{clr.clr.ENDC}\t\t"
-                  f"{clr.clr.UNDERLINE}PID{clr.clr.ENDC}\t\t"
-                  f"{clr.clr.UNDERLINE}Framework{clr.clr.ENDC}")
-            for key in list(running_apps.keys()):
-                app = running_apps[key]
-
-                # Check if the app framework was detected or not
-                if app["appInfo"]["framework"] == "Unknown":
-                    app_framework_info = f"{clr.clr.WARNING}" \
-                                         f"{app['appInfo']['framework']}" \
-                                         f"{clr.clr.ENDC}"
-                elif app["appInfo"]["framework"]:
-                    app_framework_info = f"{clr.clr.OKGREEN}" \
-                                         f"{app['appInfo']['framework']}" \
-                                         f"{clr.clr.ENDC}"
-                else:
-                    app_framework_info = f"{clr.clr.FAIL}" \
-                                         f"Error" \
-                                         f"{clr.clr.ENDC}"
-
-                print(f"{clr.clr.BOLD}{app['appInfo']['name']}{clr.clr.ENDC}\t\t\t"
-                      f"{clr.clr.OKGREEN}Running{clr.clr.ENDC}\t\t"
-                      f"{clr.clr.WARNING}{app['pid']}{clr.clr.ENDC}\t\t" + app_framework_info)
