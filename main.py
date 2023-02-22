@@ -53,6 +53,8 @@ if __name__ == "__main__":
                              "using brute force.")
     parser.add_argument("--update-submodules", action="store_true",
                         help="Updates app submodules(Requires --path).")
+    parser.add_argument("--show-all", action="store_true",
+                        help="Show every app.")
 
     parser.add_argument("--args", type=str,
                         help="Application arguments.")

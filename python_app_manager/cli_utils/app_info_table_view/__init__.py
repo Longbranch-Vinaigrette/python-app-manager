@@ -113,8 +113,8 @@ class AppInfoTableView:
                                f"{item['pid']}"
                                f"{clr.clr.ENDC}")
                 else:
-                    row.append(f"{clr.clr.FAIL}"
-                               f"Not running"
+                    row.append(f"{clr.palette.CBEIGE}"
+                               f"-"
                                f"{clr.clr.ENDC}")
 
             # View app language

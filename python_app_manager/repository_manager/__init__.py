@@ -32,6 +32,17 @@ class RepositoryManager:
                     clr.print_ok_green(f"Ok")
                 except Exception as ex:
                     clr.print_error(f"Error: {str(ex)}")
+        elif args.show_all:
+            clr.print_ok_blue("Apps found")
+            apps: dict = rep_procs.get_apps()
+            table_view = AppInfoTableView(
+                apps,
+                # view_columns=[
+                #         "appInfo:name",
+                #         "appInfo:appLanguage",
+                #         "appInfo:framework"
+                #     ]
+            )
         else:
             clr.print_ok_blue("Running repositories/user apps")
 
